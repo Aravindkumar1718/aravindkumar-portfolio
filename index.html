@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,123 +12,136 @@
   <meta name="robots" content="index, follow" />
   <title>Aravind Kumar V — AI, ML & IoT Developer</title>
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Bootstrap 5 (JS only — for modals) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Theme flash prevention: apply saved theme before first paint -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
 </head>
 
 <body>
 
-  <!-- ====== NAVBAR ====== -->
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="navbar" id="mainNavbar">
     <div class="container">
-      <a class="navbar-brand" href="#home">
-        <span class="brand-icon">AK</span>
-        <span>Aravind Kumar V</span>
-      </a>
-      <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="bi bi-list"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item ms-lg-2">
-            <a class="nav-cta" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">
-              <i class="bi bi-file-earmark-text me-1"></i>Resume
-            </a>
-          </li>
-        </ul>
+      <a class="nav-brand" href="#home">Aravind Kumar V</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#" class="nav-resume" data-bs-toggle="modal" data-bs-target="#resumeModal">
+          <i class="bi bi-file-earmark-text"></i> Resume
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Switch theme">
+          <i class="bi bi-moon-fill icon-moon"></i>
+          <i class="bi bi-sun-fill icon-sun"></i>
+        </button>
       </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#skills" class="mobile-nav-link">Skills</a>
+    <a href="#projects" class="mobile-nav-link">Projects</a>
+    <a href="#experience" class="mobile-nav-link">Experience</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+    <a href="#" class="nav-resume-mobile" data-bs-toggle="modal" data-bs-target="#resumeModal">
+      <i class="bi bi-file-earmark-text"></i> Resume
+    </a>
+    <button class="mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle light/dark theme">
+      <i class="bi bi-moon-fill"></i> <span>Light Mode</span>
+    </button>
+  </div>
+
   <!-- ====== HERO ====== -->
   <section id="home" class="hero">
-    <div class="container hero-container">
-      <div class="row align-items-center g-5">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <div class="hero-gradient"></div>
 
-        <!-- Left: text -->
-        <div class="col-lg-7 hero-text">
-          <div class="status-chip">
-            <span class="status-dot"></span>
+    <div class="container">
+      <div class="hero-row" style="display:flex;align-items:center;gap:64px;">
+
+        <div class="hero-content" style="flex:1;">
+          <div class="hero-status">
+            <span class="hero-status-dot"></span>
             Available for Opportunities
           </div>
 
-          <div class="hero-role">
-            <span class="role-tag">AI &amp; ML</span>
-            <span class="role-sep">·</span>
-            <span class="role-tag">IoT Systems</span>
-            <span class="role-sep">·</span>
-            <span class="role-tag">Python Developer</span>
-          </div>
-
-          <h1 class="hero-name">
+          <h1 class="hero-headline">
             Building intelligent systems that connect
-            <span class="text-gradient">software, data &amp; hardware.</span>
+            <span class="text-accent">software, data & hardware.</span>
           </h1>
 
           <p class="hero-bio">
-            Final-year B.Tech AI &amp; Data Science student at <strong>SMVEC, Puducherry</strong>.
+            Final-year B.Tech AI & Data Science student at <strong>SMVEC, Puducherry</strong>.
             I build real-time IoT pipelines, deploy ML models on edge devices, and create
             Flask-based dashboards — from ESP32 sensor data to TensorFlow inference.
           </p>
 
           <div class="hero-actions">
-            <a href="#projects" class="btn-primary-hero">
+            <a href="#projects" class="btn-primary">
               <i class="bi bi-grid-3x3-gap"></i> View Projects
             </a>
-            <a href="static/docs/Aravind_Kumar_V_Resume.pdf" download="Aravind_Kumar_V_Resume.pdf" class="btn-outline-hero" id="btnDownloadResume">
+            <a href="static/docs/Aravind_Kumar_V_Resume.pdf" download="Aravind_Kumar_V_Resume.pdf" class="btn-secondary">
               <i class="bi bi-download"></i> Download Resume
             </a>
-            <button type="button" class="btn-resume-options" data-bs-toggle="modal" data-bs-target="#resumeModal" title="More Resume Options">
-              <i class="bi bi-three-dots"></i>
-            </button>
           </div>
 
-          <div class="hero-tech-stack">
+          <div class="hero-tech">
             <span>Python</span>
-            <div class="tech-divider"></div>
             <span>TensorFlow</span>
-            <div class="tech-divider"></div>
             <span>ESP32</span>
-            <div class="tech-divider"></div>
             <span>Flask</span>
-            <div class="tech-divider"></div>
             <span>Arduino</span>
-            <div class="tech-divider"></div>
             <span>OpenCV</span>
           </div>
         </div>
 
-        <!-- Right: summary cards -->
-        <div class="col-lg-5 d-none d-lg-block">
-          <div class="hero-visual">
-            <div class="hero-stat-card">
-              <div class="hero-stat-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+        <div class="hero-stats-col" style="flex:0 0 320px;">
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-icon" style="background:var(--accent-soft);color:var(--accent-light)">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+              </div>
               <div>
                 <div class="hero-stat-value">8+</div>
-                <div class="hero-stat-label">IoT &amp; ML Projects Built</div>
+                <div class="hero-stat-label">IoT & ML Projects Built</div>
               </div>
             </div>
-            <div class="hero-stat-card">
-              <div class="hero-stat-icon" style="background:rgba(34,197,94,0.1);color:#22c55e"><i class="bi bi-briefcase-fill"></i></div>
+            <div class="hero-stat">
+              <div class="hero-stat-icon" style="background:var(--green-soft);color:var(--green)">
+                <i class="bi bi-briefcase-fill"></i>
+              </div>
               <div>
                 <div class="hero-stat-value">2</div>
                 <div class="hero-stat-label">Industry Internships</div>
               </div>
             </div>
-            <div class="hero-stat-card">
-              <div class="hero-stat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="bi bi-award-fill"></i></div>
+            <div class="hero-stat">
+              <div class="hero-stat-icon" style="background:var(--amber-soft);color:var(--amber)">
+                <i class="bi bi-award-fill"></i>
+              </div>
               <div>
                 <div class="hero-stat-value">5</div>
                 <div class="hero-stat-label">Professional Certifications</div>
@@ -144,92 +157,76 @@
   <!-- ====== ABOUT ====== -->
   <section id="about" class="section-alt">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">About</span>
-        <h2 class="section-title">Building smart systems from silicon to software.</h2>
-      </div>
+      <div class="section-label reveal">About</div>
 
-      <div class="row g-5 align-items-start">
-
-        <div class="col-lg-6 reveal">
-          <p class="about-intro">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
             I am a final-year B.Tech student specialising in <strong>Artificial Intelligence and
             Data Science</strong>. Through two internships at <strong>Edusphere Solutions, Puducherry</strong>,
             I built real-time IoT pipelines, deployed ML models, and created Flask dashboards
             for live sensor monitoring.
           </p>
-          <p class="about-intro" style="margin-top:-16px">
+          <p>
             My focus is bridging hardware and software — capturing real-world signals with
             ESP32 and Arduino, then feeding them into TensorFlow models that make
             intelligent decisions at the edge.
           </p>
 
-          <div class="career-callout">
-            <p class="career-callout-title">Career Objective</p>
-            <p class="career-callout-body">
+          <div class="about-objective">
+            <div class="about-objective-title">Career Objective</div>
+            <p>
               To leverage AI, IoT, and ML expertise to build scalable, impactful solutions
               for real-world problems — while continuously growing and contributing
               meaningfully to the organisations I join.
             </p>
           </div>
 
-          <div class="soft-skills-row">
-            <span class="soft-pill"><i class="bi bi-person-check"></i> Leadership</span>
-            <span class="soft-pill"><i class="bi bi-lightbulb"></i> Problem-Solving</span>
-            <span class="soft-pill"><i class="bi bi-chat"></i> Communication</span>
-            <span class="soft-pill"><i class="bi bi-people"></i> Teamwork</span>
-            <span class="soft-pill"><i class="bi bi-book"></i> Self-Learning</span>
+          <div class="about-traits">
+            <span class="about-trait"><i class="bi bi-person-check"></i> Leadership</span>
+            <span class="about-trait"><i class="bi bi-lightbulb"></i> Problem-Solving</span>
+            <span class="about-trait"><i class="bi bi-chat"></i> Communication</span>
+            <span class="about-trait"><i class="bi bi-people"></i> Teamwork</span>
+            <span class="about-trait"><i class="bi bi-book"></i> Self-Learning</span>
           </div>
         </div>
 
-        <div class="col-lg-6 reveal">
-          <div class="row g-3">
-            <div class="col-6">
-              <div class="info-tile">
-                <div class="info-tile-ico" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="bi bi-mortarboard-fill"></i></div>
-                <span class="info-tile-lbl">Degree</span>
-                <span class="info-tile-val">B.Tech — AI &amp; DS</span>
-              </div>
+        <div class="reveal">
+          <div class="about-info">
+            <div class="info-tile">
+              <div class="info-tile-icon" style="background:var(--accent-soft);color:var(--accent-light)"><i class="bi bi-mortarboard-fill"></i></div>
+              <span class="info-tile-label">Degree</span>
+              <span class="info-tile-value">B.Tech — AI & DS</span>
             </div>
-            <div class="col-6">
-              <div class="info-tile">
-                <div class="info-tile-ico" style="background:rgba(34,197,94,0.1);color:#22c55e"><i class="bi bi-building"></i></div>
-                <span class="info-tile-lbl">College</span>
-                <span class="info-tile-val">SMVEC, Puducherry</span>
-              </div>
+            <div class="info-tile">
+              <div class="info-tile-icon" style="background:var(--green-soft);color:var(--green)"><i class="bi bi-building"></i></div>
+              <span class="info-tile-label">College</span>
+              <span class="info-tile-value">SMVEC, Puducherry</span>
             </div>
-            <div class="col-6">
-              <div class="info-tile">
-                <div class="info-tile-ico" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="bi bi-geo-alt-fill"></i></div>
-                <span class="info-tile-lbl">Location</span>
-                <span class="info-tile-val">Puducherry, India</span>
-              </div>
+            <div class="info-tile">
+              <div class="info-tile-icon" style="background:var(--amber-soft);color:var(--amber)"><i class="bi bi-geo-alt-fill"></i></div>
+              <span class="info-tile-label">Location</span>
+              <span class="info-tile-value">Puducherry, India</span>
             </div>
-            <div class="col-6">
-              <div class="info-tile">
-                <div class="info-tile-ico" style="background:rgba(168,85,247,0.1);color:#a855f7"><i class="bi bi-translate"></i></div>
-                <span class="info-tile-lbl">Languages</span>
-                <span class="info-tile-val">English · Tamil</span>
-              </div>
+            <div class="info-tile">
+              <div class="info-tile-icon" style="background:rgba(168,85,247,0.1);color:#a855f7"><i class="bi bi-translate"></i></div>
+              <span class="info-tile-label">Languages</span>
+              <span class="info-tile-value">English · Tamil</span>
             </div>
           </div>
 
-          <div class="social-card">
-            <p class="social-card-title">Connect With Me</p>
-            <div class="social-links">
-              <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="soc-btn soc-github">
-                <i class="bi bi-github"></i> GitHub
-              </a>
-              <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" class="soc-btn soc-linkedin">
-                <i class="bi bi-linkedin"></i> LinkedIn
-              </a>
-              <a href="mailto:aravidkumaradarsh@gmail.com" class="soc-btn soc-email">
-                <i class="bi bi-envelope-fill"></i> Email
-              </a>
-            </div>
+          <div class="about-socials">
+            <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="about-social">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" class="about-social">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:aravidkumaradarsh@gmail.com" class="about-social">
+              <i class="bi bi-envelope-fill"></i> Email
+            </a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -237,105 +234,83 @@
   <!-- ====== SKILLS ====== -->
   <section id="skills" class="section">
     <div class="container">
-      <div class="section-header text-center reveal">
-        <span class="eyebrow">Technical Stack</span>
-        <h2 class="section-title">Skills &amp; Technologies</h2>
-        <p class="section-subtitle">Tools, languages, and frameworks I work with.</p>
-      </div>
+      <div class="section-label reveal">Technical Stack</div>
+      <h2 class="section-title reveal">Skills & Technologies</h2>
+      <p class="section-desc reveal">Tools, languages, and frameworks I work with across AI/ML, IoT, and web development.</p>
 
-      <div class="row g-4 mt-3 justify-content-center">
+      <div class="skills-grid mt-8 reveal-stagger">
 
-        <!-- 1. Programming -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <div class="skill-card-ico" style="background:rgba(96,165,250,0.1)">
-                <i class="bi bi-code-slash" style="color:#60a5fa"></i>
-              </div>
-              <h5>Programming</h5>
-            </div>
-            <div class="badge-cloud">
-              <span class="skbadge blue"><i class="bi bi-filetype-py"></i> Python</span>
-              <span class="skbadge blue"><i class="bi bi-file-code"></i> C</span>
-              <span class="skbadge blue"><i class="bi bi-filetype-html"></i> HTML</span>
-              <span class="skbadge blue"><i class="bi bi-filetype-css"></i> CSS</span>
-              <span class="skbadge blue"><i class="bi bi-filetype-js"></i> JavaScript (Basic)</span>
-            </div>
+        <!-- Programming -->
+        <div class="skill-category reveal">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa"><i class="bi bi-code-slash"></i></div>
+            <div class="skill-cat-title">Programming</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item primary"><i class="bi bi-filetype-py"></i> Python</div>
+            <div class="skill-item"><i class="bi bi-file-code"></i> C</div>
+            <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML</div>
+            <div class="skill-item"><i class="bi bi-filetype-css"></i> CSS</div>
+            <div class="skill-item"><i class="bi bi-filetype-js"></i> JavaScript (Basic)</div>
           </div>
         </div>
 
-        <!-- 2. IoT & Embedded -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <div class="skill-card-ico" style="background:rgba(74,222,128,0.1)">
-                <i class="bi bi-motherboard" style="color:#4ade80"></i>
-              </div>
-              <h5>IoT &amp; Embedded Systems</h5>
-            </div>
-            <div class="badge-cloud">
-              <span class="skbadge green"><i class="bi bi-motherboard-fill"></i> Arduino IDE</span>
-              <span class="skbadge green"><i class="bi bi-cpu-fill"></i> ESP32</span>
-              <span class="skbadge green"><i class="bi bi-hdd-network"></i> Raspberry Pi</span>
-              <span class="skbadge green"><i class="bi bi-broadcast"></i> Sensor Integration</span>
-              <span class="skbadge green"><i class="bi bi-reception-4"></i> Real-Time Data Acquisition</span>
-              <span class="skbadge green"><i class="bi bi-activity"></i> Signal Processing</span>
-            </div>
+        <!-- ML & AI -->
+        <div class="skill-category reveal">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa"><i class="bi bi-cpu"></i></div>
+            <div class="skill-cat-title">Machine Learning & AI</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item primary"><i class="bi bi-lightning-fill"></i> TensorFlow</div>
+            <div class="skill-item primary"><i class="bi bi-gear-fill"></i> Keras</div>
+            <div class="skill-item"><i class="bi bi-fire"></i> PyTorch</div>
+            <div class="skill-item"><i class="bi bi-image"></i> CNN</div>
+            <div class="skill-item"><i class="bi bi-camera"></i> Image Processing</div>
           </div>
         </div>
 
-        <!-- 3. Web Development -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <div class="skill-card-ico" style="background:rgba(56,189,248,0.1)">
-                <i class="bi bi-globe" style="color:#38bdf8"></i>
-              </div>
-              <h5>Web Development</h5>
-            </div>
-            <div class="badge-cloud">
-              <span class="skbadge sky"><i class="bi bi-server"></i> Flask</span>
-              <span class="skbadge sky"><i class="bi bi-cloud-arrow-down"></i> RESTful APIs</span>
-              <span class="skbadge sky"><i class="bi bi-database"></i> SQL</span>
-            </div>
+        <!-- Data Science -->
+        <div class="skill-category reveal">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24"><i class="bi bi-bar-chart-line"></i></div>
+            <div class="skill-cat-title">Data Science</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item primary"><i class="bi bi-table"></i> Pandas</div>
+            <div class="skill-item primary"><i class="bi bi-calculator"></i> NumPy</div>
+            <div class="skill-item"><i class="bi bi-pie-chart"></i> Matplotlib</div>
+            <div class="skill-item"><i class="bi bi-bar-chart"></i> Seaborn</div>
+            <div class="skill-item"><i class="bi bi-funnel"></i> Data Preprocessing</div>
           </div>
         </div>
 
-        <!-- 4. Machine Learning & AI -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <div class="skill-card-ico" style="background:rgba(167,139,250,0.1)">
-                <i class="bi bi-cpu" style="color:#a78bfa"></i>
-              </div>
-              <h5>Machine Learning &amp; AI</h5>
-            </div>
-            <div class="badge-cloud">
-              <span class="skbadge purple"><i class="bi bi-lightning-fill"></i> TensorFlow</span>
-              <span class="skbadge purple"><i class="bi bi-gear-fill"></i> Keras</span>
-              <span class="skbadge purple"><i class="bi bi-fire"></i> PyTorch</span>
-              <span class="skbadge purple"><i class="bi bi-image"></i> CNN</span>
-              <span class="skbadge purple"><i class="bi bi-camera"></i> Image Processing</span>
-            </div>
+        <!-- IoT & Embedded -->
+        <div class="skill-category reveal">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80"><i class="bi bi-motherboard"></i></div>
+            <div class="skill-cat-title">IoT & Embedded Systems</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item primary"><i class="bi bi-cpu-fill"></i> ESP32</div>
+            <div class="skill-item primary"><i class="bi bi-motherboard-fill"></i> Arduino IDE</div>
+            <div class="skill-item"><i class="bi bi-hdd-network"></i> Raspberry Pi</div>
+            <div class="skill-item"><i class="bi bi-broadcast"></i> Sensor Integration</div>
+            <div class="skill-item"><i class="bi bi-reception-4"></i> Real-Time Data Acquisition</div>
+            <div class="skill-item"><i class="bi bi-activity"></i> Signal Processing</div>
           </div>
         </div>
 
-        <!-- 5. Data Science -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="skill-card">
-            <div class="skill-card-head">
-              <div class="skill-card-ico" style="background:rgba(251,191,36,0.1)">
-                <i class="bi bi-bar-chart-line" style="color:#fbbf24"></i>
-              </div>
-              <h5>Data Science</h5>
-            </div>
-            <div class="badge-cloud">
-              <span class="skbadge amber"><i class="bi bi-table"></i> Pandas</span>
-              <span class="skbadge amber"><i class="bi bi-calculator"></i> NumPy</span>
-              <span class="skbadge amber"><i class="bi bi-pie-chart"></i> Matplotlib</span>
-              <span class="skbadge amber"><i class="bi bi-bar-chart"></i> Seaborn</span>
-              <span class="skbadge amber"><i class="bi bi-funnel"></i> Data Preprocessing</span>
-            </div>
+        <!-- Web Development -->
+        <div class="skill-category reveal">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon" style="background:rgba(56,189,248,0.1);color:#38bdf8"><i class="bi bi-globe"></i></div>
+            <div class="skill-cat-title">Web Development</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-item primary"><i class="bi bi-server"></i> Flask</div>
+            <div class="skill-item"><i class="bi bi-cloud-arrow-down"></i> RESTful APIs</div>
+            <div class="skill-item"><i class="bi bi-database"></i> SQL</div>
           </div>
         </div>
 
@@ -346,14 +321,12 @@
   <!-- ====== PROJECTS ====== -->
   <section id="projects" class="section-alt">
     <div class="container">
-      <div class="section-header text-center reveal">
-        <span class="eyebrow">Portfolio</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Real-world IoT &amp; ML systems built from scratch — hardware to deployment.</p>
-      </div>
+      <div class="section-label reveal">Portfolio</div>
+      <h2 class="section-title reveal">Featured Projects</h2>
+      <p class="section-desc reveal">Real-world IoT & ML systems built from scratch — hardware to deployment.</p>
 
-      <!-- Project Category Filters -->
-      <div class="proj-filters reveal">
+      <!-- Filter buttons -->
+      <div class="proj-filters mt-8 reveal">
         <button class="proj-filter-btn active" data-filter="all"><i class="bi bi-grid-fill"></i> All</button>
         <button class="proj-filter-btn" data-filter="biomedical"><i class="bi bi-heart-pulse"></i> Biomedical</button>
         <button class="proj-filter-btn" data-filter="assistive"><i class="bi bi-person-wheelchair"></i> Assistive</button>
@@ -361,46 +334,45 @@
         <button class="proj-filter-btn" data-filter="safety"><i class="bi bi-shield-check"></i> Safety</button>
       </div>
 
-      <div class="row g-4" id="projectsGrid">
-        
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="biomedical">
-          <div class="proj-card">
-            <div class="proj-visual" style="background: linear-gradient(135deg, #1a56db 0%, #0ea5e9 100%)">
-              <i class="bi bi-heart-pulse proj-visual-ico"></i>
-              <span class="proj-cat-badge">Biomedical AI</span>
-            </div>
-            <div class="proj-body">
-              <h5>ECG, EMG &amp; EOG Signal Anomaly Detection</h5>
-              <p>Real-time biomedical signal acquisition using BioAmp EXG + ESP32. TensorFlow ML models classify cardiac and muscular anomalies with live health monitoring alerts.</p>
-              <div class="proj-tags">
-                
-                <span>Python</span>
-                
-                <span>TensorFlow</span>
-                
-                <span>ESP32</span>
-                
-                <span>Signal Processing</span>
-                
-                <span>Keras</span>
-                
-              </div>
-              <div class="proj-actions">
-                <button class="btn-proj-details" data-project-id="1">
-                  <i class="bi bi-info-circle"></i> View Details
-                </button>
-                <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="btn-proj-code" title="View Source Code on GitHub">
-                  <i class="bi bi-github"></i>
-                </a>
-              </div>
-            </div>
+      <!-- Featured project (Project 1) -->
+      <div class="proj-featured reveal" data-category="biomedical" id="featuredProject">
+        <div class="proj-featured-visual" style="background: linear-gradient(135deg, #1a56db 0%, #0ea5e9 100%)">
+          <i class="bi bi-heart-pulse"></i>
+        </div>
+        <div>
+          <span class="proj-featured-label">Featured — Biomedical AI</span>
+          <h3 class="proj-featured-title">ECG, EMG & EOG Signal Anomaly Detection</h3>
+          <p class="proj-featured-desc">
+            An end-to-end intelligent biomedical diagnostic system that captures analog bio-potential signals via BioAmp EXG sensors. Signals are digitized on ESP32, streamed over Wi-Fi, and evaluated using deep learning CNN & LSTM models in TensorFlow to identify arrhythmias and muscle fatigue in real time.
+          </p>
+          <div class="proj-featured-tags">
+            <span>Python</span>
+            <span>TensorFlow</span>
+            <span>ESP32</span>
+            <span>Signal Processing</span>
+            <span>Keras</span>
+          </div>
+          <div class="proj-featured-actions">
+            <button class="btn-primary btn-proj-details" data-project-id="1">
+              <i class="bi bi-info-circle"></i> View Details
+            </button>
+            <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+              <i class="bi bi-github"></i> GitHub
+            </a>
           </div>
         </div>
+      </div>
+
+      <!-- Project grid (remaining 7 projects) -->
+      <div class="proj-grid reveal-stagger" id="projectsGrid">
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="assistive">
+        
+        
+        
+        <div class="proj-item reveal" data-category="assistive">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #059669 0%, #34d399 100%)">
-              <i class="bi bi-person-wheelchair proj-visual-ico"></i>
+              <i class="bi bi-person-wheelchair"></i>
               <span class="proj-cat-badge">Assistive Tech</span>
             </div>
             <div class="proj-body">
@@ -431,10 +403,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="assistive">
+        
+        
+        <div class="proj-item reveal" data-category="assistive">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)">
-              <i class="bi bi-activity proj-visual-ico"></i>
+              <i class="bi bi-activity"></i>
               <span class="proj-cat-badge">Neuro-Tech</span>
             </div>
             <div class="proj-body">
@@ -465,10 +439,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="vision">
+        
+        
+        <div class="proj-item reveal" data-category="vision">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%)">
-              <i class="bi bi-tree proj-visual-ico"></i>
+              <i class="bi bi-tree"></i>
               <span class="proj-cat-badge">Smart Agriculture</span>
             </div>
             <div class="proj-body">
@@ -499,10 +475,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="safety">
+        
+        
+        <div class="proj-item reveal" data-category="safety">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #dc2626 0%, #f87171 100%)">
-              <i class="bi bi-shield-check proj-visual-ico"></i>
+              <i class="bi bi-shield-check"></i>
               <span class="proj-cat-badge">Safety System</span>
             </div>
             <div class="proj-body">
@@ -533,10 +511,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="biomedical">
+        
+        
+        <div class="proj-item reveal" data-category="biomedical">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%)">
-              <i class="bi bi-droplet-half proj-visual-ico"></i>
+              <i class="bi bi-droplet-half"></i>
               <span class="proj-cat-badge">Healthcare</span>
             </div>
             <div class="proj-body">
@@ -565,10 +545,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="safety">
+        
+        
+        <div class="proj-item reveal" data-category="safety">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%)">
-              <i class="bi bi-train-front proj-visual-ico"></i>
+              <i class="bi bi-train-front"></i>
               <span class="proj-cat-badge">Automation</span>
             </div>
             <div class="proj-body">
@@ -599,10 +581,12 @@
           </div>
         </div>
         
-        <div class="col-md-6 col-xl-4 proj-item reveal" data-category="safety">
+        
+        
+        <div class="proj-item reveal" data-category="safety">
           <div class="proj-card">
             <div class="proj-visual" style="background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%)">
-              <i class="bi bi-car-front proj-visual-ico"></i>
+              <i class="bi bi-car-front"></i>
               <span class="proj-cat-badge">Driver Safety</span>
             </div>
             <div class="proj-body">
@@ -633,6 +617,7 @@
           </div>
         </div>
         
+        
       </div>
     </div>
   </section>
@@ -640,305 +625,169 @@
   <!-- ====== EXPERIENCE ====== -->
   <section id="experience" class="section">
     <div class="container">
-      <div class="section-header text-center reveal">
-        <span class="eyebrow">Background</span>
-        <h2 class="section-title">Experience &amp; Education</h2>
-        <p class="section-subtitle">Professional internships and academic milestones.</p>
-      </div>
+      <div class="section-label reveal">Background</div>
+      <h2 class="section-title reveal">Experience</h2>
+      <p class="section-desc reveal">Professional internships building real-world IoT and ML systems.</p>
 
-      <!-- Work Experience -->
-      <div class="row g-4 justify-content-center mt-3">
+      <div class="exp-timeline mt-8">
 
-        <div class="col-lg-6 reveal">
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-icon-wrap"><i class="bi bi-cpu-fill"></i></div>
-              <div class="exp-meta">
-                <span class="exp-period">Mar 2026 – Jun 2026</span>
-                <span class="exp-type">Full-time Intern</span>
-              </div>
-            </div>
-            <h4 class="exp-role">IoT + ML Developer Intern</h4>
-            <p class="exp-company"><i class="bi bi-building me-1"></i>Edusphere Solutions, Puducherry</p>
-            <ul class="exp-list">
-              <li>Developed and deployed real-time IoT &amp; ML projects using Arduino IDE, ESP32, and Python</li>
-              <li>Built intelligent systems integrating sensors, microcontrollers, and ML models</li>
-              <li>Created Flask web apps for IoT data visualisation and real-time analytics</li>
-              <li>Implemented end-to-end AI/ML pipelines from data collection to model deployment</li>
-            </ul>
-            <div class="exp-tags">
-              <span>Python</span><span>ESP32</span><span>TensorFlow</span><span>Flask</span><span>Arduino IDE</span>
-            </div>
+        <div class="exp-entry reveal">
+          <div class="exp-dot"></div>
+          <span class="exp-period">Mar 2026 – Jun 2026</span>
+          <h3 class="exp-role">IoT + ML Developer Intern</h3>
+          <p class="exp-company"><i class="bi bi-building"></i> Edusphere Solutions, Puducherry</p>
+          <ul class="exp-list">
+            <li>Developed and deployed real-time IoT & ML projects using Arduino IDE, ESP32, and Python</li>
+            <li>Built intelligent systems integrating sensors, microcontrollers, and ML models</li>
+            <li>Created Flask web apps for IoT data visualisation and real-time analytics</li>
+            <li>Implemented end-to-end AI/ML pipelines from data collection to model deployment</li>
+          </ul>
+          <div class="exp-tags">
+            <span>Python</span><span>ESP32</span><span>TensorFlow</span><span>Flask</span><span>Arduino IDE</span>
           </div>
         </div>
 
-        <div class="col-lg-6 reveal">
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-icon-wrap" style="background:rgba(167,139,250,0.1);color:#a78bfa"><i class="bi bi-filetype-py"></i></div>
-              <div class="exp-meta">
-                <span class="exp-period">Sep 2025 – Dec 2025</span>
-                <span class="exp-type">Full-time Intern</span>
-              </div>
-            </div>
-            <h4 class="exp-role">Python Developer Intern</h4>
-            <p class="exp-company"><i class="bi bi-building me-1"></i>Edusphere Solutions, Puducherry</p>
-            <ul class="exp-list">
-              <li>Developed Python scripts and applications for data processing and analysis</li>
-              <li>Implemented data preprocessing pipelines and feature engineering techniques</li>
-              <li>Collaborated with the team on data-driven projects and codebase development</li>
-            </ul>
-            <div class="exp-tags">
-              <span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span>
-            </div>
+        <div class="exp-entry reveal">
+          <div class="exp-dot"></div>
+          <span class="exp-period">Sep 2025 – Dec 2025</span>
+          <h3 class="exp-role">Python Developer Intern</h3>
+          <p class="exp-company"><i class="bi bi-building"></i> Edusphere Solutions, Puducherry</p>
+          <ul class="exp-list">
+            <li>Developed Python scripts and applications for data processing and analysis</li>
+            <li>Implemented data preprocessing pipelines and feature engineering techniques</li>
+            <li>Collaborated with the team on data-driven projects and codebase development</li>
+          </ul>
+          <div class="exp-tags">
+            <span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span>
           </div>
         </div>
+
       </div>
 
-      <!-- Education Timeline -->
-      <div class="row justify-content-center mt-5">
-        <div class="col-lg-9">
-          <h3 class="section-title reveal" style="font-size:1.375rem;margin-bottom:24px;">
-            <i class="bi bi-mortarboard me-2" style="color:var(--accent)"></i>Education
-          </h3>
-          <div class="edu-timeline">
+      <!-- Education -->
+      <div class="mt-8">
+        <h3 class="section-title reveal" style="font-size:24px;margin-bottom:var(--sp-6);">
+          <i class="bi bi-mortarboard" style="color:var(--accent-light);margin-right:8px"></i>Education
+        </h3>
 
-            <!-- B.Tech -->
-            <div class="edu-entry reveal">
-              <div class="edu-marker">
-                <div class="edu-icon"><i class="bi bi-mortarboard-fill"></i></div>
-                <div class="edu-connector"></div>
-              </div>
-              <div class="edu-body">
-                <div class="edu-card">
-                  <div class="edu-card-top">
-                    <div>
-                      <h4 class="edu-degree">B.Tech — Artificial Intelligence &amp; Data Science</h4>
-                      <p class="edu-inst"><i class="bi bi-geo-alt me-1"></i>Sri Manakula Vinayagar Engineering College, Puducherry</p>
-                    </div>
-                    <span class="edu-year-badge">2022 – 2026</span>
-                  </div>
-                  <div class="edu-card-bottom">
-                    <span class="edu-grade"><i class="bi bi-award-fill me-1"></i>CGPA: 6.88 / 10</span>
-                    <span class="edu-type-badge">Final Year</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- HSC -->
-            <div class="edu-entry reveal">
-              <div class="edu-marker">
-                <div class="edu-icon"><i class="bi bi-building"></i></div>
-                <div class="edu-connector"></div>
-              </div>
-              <div class="edu-body">
-                <div class="edu-card">
-                  <div class="edu-card-top">
-                    <div>
-                      <h4 class="edu-degree">Higher Secondary Certificate — State Board</h4>
-                      <p class="edu-inst"><i class="bi bi-geo-alt me-1"></i>Amalorpavam Hr. Sec. School</p>
-                    </div>
-                    <span class="edu-year-badge">2022</span>
-                  </div>
-                  <div class="edu-card-bottom">
-                    <span class="edu-grade"><i class="bi bi-award-fill me-1"></i>62%</span>
-                    <span class="edu-type-badge">Class 12</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SSLC -->
-            <div class="edu-entry reveal">
-              <div class="edu-marker">
-                <div class="edu-icon"><i class="bi bi-book-fill"></i></div>
-              </div>
-              <div class="edu-body">
-                <div class="edu-card">
-                  <div class="edu-card-top">
-                    <div>
-                      <h4 class="edu-degree">Secondary School Leaving Certificate — State Board</h4>
-                      <p class="edu-inst"><i class="bi bi-geo-alt me-1"></i>Amalorpavam Hr. Sec. School</p>
-                    </div>
-                    <span class="edu-year-badge">2020</span>
-                  </div>
-                  <div class="edu-card-bottom">
-                    <span class="edu-grade"><i class="bi bi-award-fill me-1"></i>58%</span>
-                    <span class="edu-type-badge">Class 10</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+        <div class="edu-grid reveal-stagger">
+          <div class="edu-card edu-primary reveal">
+            <span class="edu-year">2022 – 2026</span>
+            <h4 class="edu-degree">B.Tech — Artificial Intelligence & Data Science</h4>
+            <p class="edu-inst"><i class="bi bi-geo-alt"></i> Sri Manakula Vinayagar Engineering College, Puducherry</p>
+            <span class="edu-grade"><i class="bi bi-award-fill" style="color:var(--accent-light)"></i> CGPA: 6.88 / 10 · Final Year</span>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-year">2022</span>
+            <h4 class="edu-degree">HSC — State Board</h4>
+            <p class="edu-inst"><i class="bi bi-geo-alt"></i> Amalorpavam Hr. Sec. School</p>
+            <span class="edu-grade">62%</span>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-year">2020</span>
+            <h4 class="edu-degree">SSLC — State Board</h4>
+            <p class="edu-inst"><i class="bi bi-geo-alt"></i> Amalorpavam Hr. Sec. School</p>
+            <span class="edu-grade">58%</span>
           </div>
         </div>
-      </div>
 
-      <!-- Certifications -->
-      <div class="row justify-content-center mt-5">
-        <div class="col-lg-9">
-          <h3 class="section-title reveal" style="font-size:1.375rem;margin-bottom:24px;">
-            <i class="bi bi-patch-check me-2" style="color:var(--accent)"></i>Certifications
-          </h3>
-          <div class="row g-3">
-            <div class="col-sm-6 col-lg-4 reveal">
-              <div class="cert-card">
-                <div class="cert-ico-wrap" style="background:rgba(96,165,250,0.1)"><i class="bi bi-robot" style="color:#60a5fa"></i></div>
-                <h6>Introduction to Machine Learning</h6>
-                <p>Foundational ML concepts &amp; algorithms</p>
-                <span class="cert-status"><i class="bi bi-patch-check-fill me-1"></i>Completed</span>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 reveal">
-              <div class="cert-card">
-                <div class="cert-ico-wrap" style="background:rgba(167,139,250,0.1)"><i class="bi bi-filetype-py" style="color:#a78bfa"></i></div>
-                <h6>Python for Data Science</h6>
-                <p>Advanced data science techniques</p>
-                <span class="cert-status"><i class="bi bi-patch-check-fill me-1"></i>Completed</span>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 reveal">
-              <div class="cert-card">
-                <div class="cert-ico-wrap" style="background:rgba(56,189,248,0.1)"><i class="bi bi-code-square" style="color:#38bdf8"></i></div>
-                <h6>OOPs Concepts in C++</h6>
-                <p>Great Learning</p>
-                <span class="cert-status"><i class="bi bi-patch-check-fill me-1"></i>Completed</span>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 reveal">
-              <div class="cert-card">
-                <div class="cert-ico-wrap" style="background:rgba(251,191,36,0.1)"><i class="bi bi-stack" style="color:#fbbf24"></i></div>
-                <h6>C · C++ · Python · HTML · CSS · JS · Excel</h6>
-                <p>Great Learning — Multi-Skill</p>
-                <span class="cert-status"><i class="bi bi-patch-check-fill me-1"></i>Completed</span>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 reveal">
-              <div class="cert-card">
-                <div class="cert-ico-wrap" style="background:rgba(239,68,68,0.1)"><i class="bi bi-cloud-fill" style="color:#ef4444"></i></div>
-                <h6>AWS Academy Cloud Foundations</h6>
-                <p>AWS Academy Graduate</p>
-                <span class="cert-status"><i class="bi bi-patch-check-fill me-1"></i>Certified</span>
-              </div>
-            </div>
-          </div>
+        <!-- Certifications -->
+        <div class="cert-row mt-6 reveal">
+          <span class="cert-chip"><i class="bi bi-patch-check-fill"></i> Introduction to Machine Learning</span>
+          <span class="cert-chip"><i class="bi bi-patch-check-fill"></i> Python for Data Science</span>
+          <span class="cert-chip"><i class="bi bi-patch-check-fill"></i> OOPs Concepts in C++</span>
+          <span class="cert-chip"><i class="bi bi-patch-check-fill"></i> C · C++ · Python · HTML · CSS · JS · Excel</span>
+          <span class="cert-chip"><i class="bi bi-patch-check-fill"></i> AWS Academy Cloud Foundations</span>
         </div>
       </div>
-
-      <!-- Achievement -->
-      <div class="row justify-content-center mt-5">
-        <div class="col-lg-9 reveal">
-          <h3 class="section-title" style="font-size:1.375rem;margin-bottom:24px;">
-            <i class="bi bi-trophy me-2" style="color:var(--amber)"></i>Achievement
-          </h3>
-          <div class="ach-card">
-            <div class="ach-left">
-              <div class="ach-trophy"><i class="bi bi-trophy-fill"></i></div>
-            </div>
-            <div class="ach-right">
-              <span class="ach-category">Data Science Hackathon</span>
-              <h4 class="ach-title">Datathon Participant — SRM University</h4>
-              <p class="ach-desc">
-                Competed in a national-level data science hackathon. Built advanced ML models with
-                rigorous data cleaning, feature engineering, and preprocessing for competitive challenges.
-              </p>
-              <span class="ach-date"><i class="bi bi-calendar-event me-1"></i>February 25, 2025</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- ====== CONTACT ====== -->
   <section id="contact" class="section-alt">
     <div class="container">
-      <div class="section-header text-center reveal">
-        <span class="eyebrow">Get in Touch</span>
-        <h2 class="section-title">Let's build something meaningful.</h2>
-        <p class="section-subtitle">Available for internships, full-time roles &amp; project collaborations.</p>
-      </div>
+      <div class="contact-grid">
 
-      <div class="row g-4 justify-content-center mt-4 align-items-stretch">
+        <!-- Left: info -->
+        <div class="reveal">
+          <div class="section-label">Get in Touch</div>
+          <h2 class="contact-heading">Let's build something meaningful.</h2>
+          <p class="contact-subtitle">
+            Available for internships, full-time roles & project collaborations.
+            Feel free to reach out through any channel below.
+          </p>
 
-        <!-- Left: Contact Info -->
-        <div class="col-lg-5 reveal">
-          <div class="contact-card">
-            <a href="tel:+919489394453" class="contact-row" data-copy-text="+919489394453" data-copy-label="Phone Number" title="Click to call or copy">
-              <div class="contact-ico" style="background:rgba(34,197,94,0.1);color:#22c55e"><i class="bi bi-telephone-fill"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">Phone / WhatsApp</span>
-                <span class="contact-value">+91 9489394453</span>
+          <div class="contact-links">
+            <a href="tel:+919489394453" class="contact-link" data-copy-text="+919489394453" data-copy-label="Phone Number">
+              <div class="contact-link-icon" style="background:var(--green-soft);color:var(--green)"><i class="bi bi-telephone-fill"></i></div>
+              <div class="contact-link-text">
+                <span class="contact-link-label">Phone / WhatsApp</span>
+                <span class="contact-link-value">+91 9489394453</span>
               </div>
-              <i class="bi bi-copy contact-arrow" title="Copy"></i>
+              <i class="bi bi-copy contact-link-arrow" title="Copy"></i>
             </a>
-            <a href="mailto:aravidkumaradarsh@gmail.com" class="contact-row" data-copy-text="aravidkumaradarsh@gmail.com" data-copy-label="Email Address" title="Click to email or copy">
-              <div class="contact-ico" style="background:rgba(239,68,68,0.1);color:#ef4444"><i class="bi bi-envelope-fill"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">aravidkumaradarsh@gmail.com</span>
+            <a href="mailto:aravidkumaradarsh@gmail.com" class="contact-link" data-copy-text="aravidkumaradarsh@gmail.com" data-copy-label="Email Address">
+              <div class="contact-link-icon" style="background:rgba(239,68,68,0.1);color:var(--red)"><i class="bi bi-envelope-fill"></i></div>
+              <div class="contact-link-text">
+                <span class="contact-link-label">Email</span>
+                <span class="contact-link-value">aravidkumaradarsh@gmail.com</span>
               </div>
-              <i class="bi bi-copy contact-arrow" title="Copy"></i>
+              <i class="bi bi-copy contact-link-arrow" title="Copy"></i>
             </a>
-            <div class="contact-row" style="cursor:default">
-              <div class="contact-ico" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="bi bi-geo-alt-fill"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">Location</span>
-                <span class="contact-value">Puducherry – 605009, India</span>
+            <div class="contact-link" style="cursor:default">
+              <div class="contact-link-icon" style="background:var(--amber-soft);color:var(--amber)"><i class="bi bi-geo-alt-fill"></i></div>
+              <div class="contact-link-text">
+                <span class="contact-link-label">Location</span>
+                <span class="contact-link-value">Puducherry – 605009, India</span>
               </div>
             </div>
-            <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" class="contact-row">
-              <div class="contact-ico" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="bi bi-linkedin"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">LinkedIn</span>
-                <span class="contact-value">linkedin.com/in/aravind-kumar</span>
+            <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon" style="background:var(--accent-soft);color:var(--accent-light)"><i class="bi bi-linkedin"></i></div>
+              <div class="contact-link-text">
+                <span class="contact-link-label">LinkedIn</span>
+                <span class="contact-link-value">linkedin.com/in/aravind-kumar</span>
               </div>
-              <i class="bi bi-box-arrow-up-right contact-arrow"></i>
+              <i class="bi bi-box-arrow-up-right contact-link-arrow"></i>
             </a>
-            <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="contact-row">
-              <div class="contact-ico" style="background:rgba(255,255,255,0.06);color:#a3a3a3"><i class="bi bi-github"></i></div>
-              <div class="contact-info">
-                <span class="contact-label">GitHub</span>
-                <span class="contact-value">github.com/Aravindkumar1718</span>
+            <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon" style="background:rgba(255,255,255,0.04);color:var(--text-muted)"><i class="bi bi-github"></i></div>
+              <div class="contact-link-text">
+                <span class="contact-link-label">GitHub</span>
+                <span class="contact-link-value">github.com/Aravindkumar1718</span>
               </div>
-              <i class="bi bi-box-arrow-up-right contact-arrow"></i>
+              <i class="bi bi-box-arrow-up-right contact-link-arrow"></i>
             </a>
           </div>
         </div>
 
-        <!-- Right: Contact Form -->
-        <div class="col-lg-7 reveal">
-          <div class="contact-form-card">
-            <div class="form-head">
-              <h4>Send a Direct Message</h4>
-              <p>Have an opportunity or project in mind? Let's connect.</p>
-            </div>
+        <!-- Right: form -->
+        <div class="reveal">
+          <div class="contact-form-wrap">
+            <h4 class="contact-form-title">Send a Direct Message</h4>
+            <p class="contact-form-subtitle">Have an opportunity or project in mind? Let's connect.</p>
+
             <form id="contactForm" novalidate>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label for="contactName" class="form-label-dark">Your Name *</label>
-                  <input type="text" class="form-control dark-input" id="contactName" placeholder="e.g. John Doe" required />
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName" class="form-label">Your Name *</label>
+                  <input type="text" class="form-input" id="contactName" placeholder="e.g. John Doe" required />
                 </div>
-                <div class="col-md-6">
-                  <label for="contactEmail" class="form-label-dark">Your Email *</label>
-                  <input type="email" class="form-control dark-input" id="contactEmail" placeholder="e.g. john@example.com" required />
-                </div>
-                <div class="col-12">
-                  <label for="contactSubject" class="form-label-dark">Subject</label>
-                  <input type="text" class="form-control dark-input" id="contactSubject" placeholder="Project Inquiry / Job Opportunity" />
-                </div>
-                <div class="col-12">
-                  <label for="contactMessage" class="form-label-dark">Message *</label>
-                  <textarea class="form-control dark-input" id="contactMessage" rows="4" placeholder="Hello Aravind, I'd like to talk about..." required></textarea>
-                </div>
-                <div class="col-12 mt-4">
-                  <button type="submit" class="btn-submit-contact" id="btnSubmitContact">
-                    <i class="bi bi-send-fill"></i> Send Message
-                  </button>
+                <div class="form-group">
+                  <label for="contactEmail" class="form-label">Your Email *</label>
+                  <input type="email" class="form-input" id="contactEmail" placeholder="e.g. john@example.com" required />
                 </div>
               </div>
+              <div class="form-group">
+                <label for="contactSubject" class="form-label">Subject</label>
+                <input type="text" class="form-input" id="contactSubject" placeholder="Project Inquiry / Job Opportunity" />
+              </div>
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">Message *</label>
+                <textarea class="form-input" id="contactMessage" rows="4" placeholder="Hello Aravind, I'd like to talk about..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit" id="btnSubmitContact">
+                <i class="bi bi-send-fill"></i> Send Message
+              </button>
             </form>
           </div>
         </div>
@@ -950,21 +799,34 @@
   <!-- ====== FOOTER ====== -->
   <footer>
     <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <span class="brand-icon">AK</span>
-          <div>
-            <p class="footer-name">Aravind Kumar V</p>
-            <p class="footer-sub">AI, ML &amp; IoT Developer · Puducherry, India</p>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Aravind Kumar V</div>
+          <p class="footer-brand-desc">AI, ML & IoT Developer building intelligent systems from sensors to software. Puducherry, India.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
-        <div class="footer-socials">
-          <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-          <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
-          <a href="mailto:aravidkumaradarsh@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+        <div>
+          <div class="footer-heading">Connect</div>
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/aravind-kumar-6018b425b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/Aravindkumar1718" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            <a href="mailto:aravidkumaradarsh@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+          </div>
         </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Aravind Kumar V · Built with Flask &amp; Python</p>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Aravind Kumar V</span>
+        <span>Built with Flask & Python</span>
+      </div>
     </div>
   </footer>
 
@@ -972,53 +834,53 @@
   <div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content dark-modal">
-        <div class="modal-header dark-modal-header">
-          <div class="d-flex align-items-center gap-2">
-            <i class="bi bi-file-earmark-person-fill" style="color:var(--accent)"></i>
-            <h5 class="modal-title dark-modal-title" id="resumeModalTitle">Download Resume</h5>
+        <div class="dark-modal-header">
+          <div style="display:flex;align-items:center;gap:8px">
+            <i class="bi bi-file-earmark-person-fill" style="color:var(--accent-light)"></i>
+            <h5 class="dark-modal-title" id="resumeModalTitle">Download Resume</h5>
           </div>
-          <button type="button" class="btn-close-dark" data-bs-dismiss="modal" aria-label="Close">
+          <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">
             <i class="bi bi-x-lg"></i>
           </button>
         </div>
-        <div class="modal-body dark-modal-body">
-          <p style="font-size:0.875rem;color:var(--text-tertiary);margin-bottom:16px">Choose your preferred format:</p>
+        <div class="dark-modal-body">
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Choose your preferred format:</p>
 
-          <a href="static/docs/Aravind_Kumar_V_Resume.pdf" download="Aravind_Kumar_V_Resume.pdf" class="resume-option-card">
-            <div class="resume-option-ico" style="background:rgba(59,130,246,0.1);color:#3b82f6">
+          <a href="static/docs/Aravind_Kumar_V_Resume.pdf" download="Aravind_Kumar_V_Resume.pdf" class="resume-option">
+            <div class="resume-option-icon" style="background:var(--accent-soft);color:var(--accent-light)">
               <i class="bi bi-file-earmark-pdf-fill"></i>
             </div>
-            <div class="resume-option-info">
-              <p class="resume-option-title">PDF Format <span class="badge bg-primary ms-1" style="font-size:0.625rem">Recommended</span></p>
+            <div>
+              <p class="resume-option-title">PDF Format <span class="badge-sm">Recommended</span></p>
               <p class="resume-option-desc">ATS-friendly, high quality layout</p>
             </div>
-            <i class="bi bi-download" style="color:var(--text-tertiary)"></i>
+            <i class="bi bi-download resume-option-arrow"></i>
           </a>
 
-          <a href="static/docs/Aravind_Kumar_V_Resume.docx" download="Aravind_Kumar_V_Resume.docx" class="resume-option-card">
-            <div class="resume-option-ico" style="background:rgba(167,139,250,0.1);color:#a78bfa">
+          <a href="static/docs/Aravind_Kumar_V_Resume.docx" download="Aravind_Kumar_V_Resume.docx" class="resume-option">
+            <div class="resume-option-icon" style="background:rgba(167,139,250,0.1);color:#a78bfa">
               <i class="bi bi-file-earmark-word-fill"></i>
             </div>
-            <div class="resume-option-info">
+            <div>
               <p class="resume-option-title">Microsoft Word</p>
               <p class="resume-option-desc">Editable document (.docx)</p>
             </div>
-            <i class="bi bi-download" style="color:var(--text-tertiary)"></i>
+            <i class="bi bi-download resume-option-arrow"></i>
           </a>
 
-          <a href="static/docs/Aravind_Kumar_V_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-option-card">
-            <div class="resume-option-ico" style="background:rgba(34,197,94,0.1);color:#22c55e">
+          <a href="static/docs/Aravind_Kumar_V_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-option">
+            <div class="resume-option-icon" style="background:var(--green-soft);color:var(--green)">
               <i class="bi bi-eye-fill"></i>
             </div>
-            <div class="resume-option-info">
+            <div>
               <p class="resume-option-title">Preview Online</p>
               <p class="resume-option-desc">Open in a new browser tab</p>
             </div>
-            <i class="bi bi-box-arrow-up-right" style="color:var(--text-tertiary)"></i>
+            <i class="bi bi-box-arrow-up-right resume-option-arrow"></i>
           </a>
         </div>
-        <div class="modal-footer dark-modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4 ms-auto" data-bs-dismiss="modal">Close</button>
+        <div class="dark-modal-footer" style="display:flex;justify-content:flex-end">
+          <button type="button" class="btn-secondary" data-bs-dismiss="modal" style="padding:8px 20px;font-size:14px;">Close</button>
         </div>
       </div>
     </div>
@@ -1028,40 +890,36 @@
   <div class="modal fade" id="projectDetailModal" tabindex="-1" aria-labelledby="modalProjectTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content dark-modal">
-        <div class="modal-header dark-modal-header">
-          <div class="d-flex align-items-center gap-3">
-            <h5 class="modal-title dark-modal-title" id="modalProjectTitle">Project Details</h5>
-            <span class="proj-cat-badge position-static" id="modalProjectBadge">Category</span>
+        <div class="dark-modal-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <h5 class="dark-modal-title" id="modalProjectTitle">Project Details</h5>
+            <span class="proj-cat-badge" style="position:static" id="modalProjectBadge">Category</span>
           </div>
-          <button type="button" class="btn-close-dark" data-bs-dismiss="modal" aria-label="Close">
+          <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">
             <i class="bi bi-x-lg"></i>
           </button>
         </div>
-        <div class="modal-body dark-modal-body">
-          <div class="mb-4">
-            <h6 class="spec-title"><i class="bi bi-file-text"></i> Overview</h6>
+        <div class="dark-modal-body">
+          <div style="margin-bottom:24px">
+            <div class="spec-section-title"><i class="bi bi-file-text"></i> Overview</div>
             <p id="modalProjectDesc" style="line-height:1.75;color:var(--text-secondary)"></p>
           </div>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="spec-block">
-                <span class="spec-title"><i class="bi bi-cpu"></i> Hardware &amp; Sensors</span>
-                <div class="spec-chips" id="modalHardwareSpecs"></div>
-              </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div>
+              <div class="spec-section-title"><i class="bi bi-cpu"></i> Hardware & Sensors</div>
+              <div class="spec-chips" id="modalHardwareSpecs"></div>
             </div>
-            <div class="col-md-6">
-              <div class="spec-block">
-                <span class="spec-title"><i class="bi bi-code-slash"></i> Software &amp; Frameworks</span>
-                <div class="spec-chips" id="modalSoftwareStack"></div>
-              </div>
+            <div>
+              <div class="spec-section-title"><i class="bi bi-code-slash"></i> Software & Frameworks</div>
+              <div class="spec-chips" id="modalSoftwareStack"></div>
             </div>
           </div>
         </div>
-        <div class="modal-footer dark-modal-footer d-flex justify-content-between">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="modalGithubBtn" style="border-color:var(--accent);color:var(--accent)">
-            <i class="bi bi-github me-1"></i> View Repository
+        <div class="dark-modal-footer" style="display:flex;justify-content:space-between">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="modalGithubBtn" style="padding:8px 20px;font-size:14px;">
+            <i class="bi bi-github"></i> View Repository
           </a>
-          <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn-secondary" data-bs-dismiss="modal" style="padding:8px 20px;font-size:14px;">Close</button>
         </div>
       </div>
     </div>
@@ -1076,7 +934,7 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JS -->
-  <script src="static/js/script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 
